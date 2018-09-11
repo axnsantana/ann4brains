@@ -23,7 +23,7 @@ def caffe_SGD(solver_filename, niter, test_interval, test_iter,
     # num_metrics = solver.net.blobs[pred_layer_id].data.shape[1] + 1
 
     if start_weights_name != None:
-        print 'starting from: ' + start_weights_name
+        print('starting from: ' + start_weights_name)
         solver.restore(start_weights_name)
         # solver.net.copy_from(start_weights_name)
 
@@ -32,10 +32,10 @@ def caffe_SGD(solver_filename, niter, test_interval, test_iter,
     elif set_mode == 'gpu':
         # For some reason, calling caffe.set_mode_gpu() gives the error:
         #
-        # Check failed: error == cudaSuccess (33 vs. 0)  invalid resource handle 
+        # Check failed: error == cudaSuccess (33 vs. 0)  invalid resource handle
         #
         # So best to ignore the GPU flag here.
-        # caffe.set_mode_gpu() 
+        # caffe.set_mode_gpu()
         # caffe.set_device(GPU_ID)
         pass
     else:
@@ -58,7 +58,7 @@ def caffe_SGD(solver_filename, niter, test_interval, test_iter,
         # Caffe can also do this for us and write to a log, but we do directly in python so
         # we can compute our custom metrics.
         if it % test_interval == 0:
-            # print 'Iteration', it, 'train-loss', train_loss[it], 'testing...'
+            # print('Iteration', it, 'train-loss', train_loss[it], 'testing...')
             preds = np.asarray([])
             actuals = np.asarray([])
             for test_idx in range(test_iter):

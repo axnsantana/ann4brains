@@ -45,7 +45,7 @@ class ConnectomeInjury(object):
         X_mn = X_mn['X_mn']
 
         if verbose:
-            print 'Data shape: ', X_mn.shape, ' Min value: ', X_mn.min(), ' Max value: ', X_mn.max()
+            print('Data shape: {} Min value: {} Max Value: {}'.format(X_mn.shape, X_mn.min(), X_mn.max()))
         return X_mn
 
     @staticmethod
@@ -175,7 +175,7 @@ def get_k_strongest_regions(X, k, verbose=False):
         # Zero out the largest column so we can find the next largest one.
         X[:, max_idx] = 0
         if verbose:
-            print "%i => column index of largest averaged value: %i" % (idx, max_idx)
+            print("{} => column index of largest averaged value: {}".format(idx, max_idx))
 
     return highest_col_indexes
 
@@ -200,4 +200,3 @@ def generate_injury_data(test_name, X_mn, S, n_samples=100, noise_weight=0.125,
     caffe_write_h5(file_name, X, X_vec, Y)
     return file_name
 """
-

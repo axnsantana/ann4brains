@@ -33,7 +33,7 @@ def vectorize_symmetric_list(X):
     # Data matrix where the entries have been vectorized.
     vec_mat = np.zeros((len(X), 4005), dtype=mat.dtype)
 
-    # print vec_mat.shape
+    # print(vec_mat.shape)
 
     idx = 0
     for mat_X in X:
