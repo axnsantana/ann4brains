@@ -2,7 +2,7 @@ from __future__ import print_function
 import numpy as np
 import os
 import matplotlib.pyplot as plt
-import cPickle
+import pickle
 import caffe
 from caffe.proto import caffe_pb2
 from caffe import layers as L
@@ -23,7 +23,7 @@ def load_model(filepath):
     """
 
     with open(filepath, 'rb') as fid:
-        model = cPickle.load(fid)
+        model = pickle.load(fid)
 
     model.load_parameters()
 
@@ -234,7 +234,7 @@ class BaseNet(object):
         :param filepath: name and path of where to save the model.
         """
         with open(filepath, 'wb') as fid:
-            cPickle.dump(self, fid)
+            pickle.dump(self, fid)
 
     # @abc.abstractmethod
     def predict(self, X):
