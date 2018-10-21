@@ -391,7 +391,7 @@ class BrainNetCNN(BaseNet):
         # mets = [[]]*len(met_keys)
         mad = []
         correlations = []
-        for n in n_classes:
+        for n in xrange(n_classes):
             correlations.append([])
         # corr_0 = []
         # corr_1 = []
@@ -401,7 +401,7 @@ class BrainNetCNN(BaseNet):
             # for m_key in met_keys:
             #    mets[0].append(met[1][m_key])
             mad.append(met[1]['mad'])
-            for n in n_classes:
+            for n in xrange(n_classes):
                 correlations[n].append(met[1]['corr_{}'.format(n)])
             # corr_0.append(met[1]['corr_0'])
             # corr_1.append(met[1]['corr_1'])
@@ -410,8 +410,8 @@ class BrainNetCNN(BaseNet):
         axes = [ax, ax.twinx()]
         axes[0].plot(self.train_metrics, color='purple', label='train loss')
         axes[0].plot(itr, mad, color='red', label='valid mad')
-        for n in n_classes:
-            axes[1].plot(itr, correlations[n], label='valid corr_{}'.format(n))	
+        for n in xrange(n_classes):
+            axes[1].plot(itr, correlations[n], label='valid corr_{}'.format(n))
         # axes[1].plot(itr, corr_0, color='blue', label='valid corr_0')
         # axes[1].plot(itr, corr_1, color='green', label='valid corr_1')
 
