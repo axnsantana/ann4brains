@@ -379,7 +379,7 @@ class BrainNetCNN(BaseNet):
                                                                          test_metrics_1['corr_0'],
                                                                          test_metrics_1['p_0']))
 
-    def plot_iter_metrics(self):
+    def plot_iter_metrics(self, n_classes=2):
         """Plot the train, test metrics over iterations.
 
         This assumes two classes. And that utils.metrics.regression_metrics was used to monitor the performance.
@@ -390,23 +390,30 @@ class BrainNetCNN(BaseNet):
         # met_keys = test_metrics[0][1].keys()
         # mets = [[]]*len(met_keys)
         mad = []
-        corr_0 = []
-        corr_1 = []
+        correlations = []
+        for n in n_classes:
+            correlations.append([])
+        # corr_0 = []
+        # corr_1 = []
 
         for met in self.test_metrics:
             itr.append(met[0])
             # for m_key in met_keys:
             #    mets[0].append(met[1][m_key])
             mad.append(met[1]['mad'])
-            corr_0.append(met[1]['corr_0'])
-            corr_1.append(met[1]['corr_1'])
+            for n in n_classes:
+                correlations[n].append(met[1]['corr_{}'.format(n)])
+            # corr_0.append(met[1]['corr_0'])
+            # corr_1.append(met[1]['corr_1'])
 
         fig, ax = plt.subplots()
         axes = [ax, ax.twinx()]
         axes[0].plot(self.train_metrics, color='purple', label='train loss')
         axes[0].plot(itr, mad, color='red', label='valid mad')
-        axes[1].plot(itr, corr_0, color='blue', label='valid corr_0')
-        axes[1].plot(itr, corr_1, color='green', label='valid corr_1')
+        for n in n_classes:
+            axes[1].plot(itr, correlations[n], label='valid corr_{}'.format(n))	
+        # axes[1].plot(itr, corr_0, color='blue', label='valid corr_0')
+        # axes[1].plot(itr, corr_1, color='green', label='valid corr_1')
 
         lines, labels = axes[0].get_legend_handles_labels()
         lines2, labels2 = axes[1].get_legend_handles_labels()
