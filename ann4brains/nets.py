@@ -317,7 +317,7 @@ class BaseNet(object):
         pars['test_interval'] = 100  # Check the model over the test/validation data after this many iterations.
         pars['max_iter'] = 2000  # Max number of iterations to train the model for.
         pars['snapshot'] = 1000  # After how many iterations should we save the model.
-        pars['base_learning_rate'] = 0.01  # Initial learning rate.
+        pars['base_learning_rate'] = 0.0001  # Initial learning rate.
         pars['step_size'] = 100000  # After how many iterations should we decrease the learning rate.
         pars['learning_momentum'] = 0.9  # Momentum used in learning.
         pars['weight_decay'] = 0.0005  # Weight decay penalty.
